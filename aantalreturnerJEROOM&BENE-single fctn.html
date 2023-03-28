@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+  <input placeholder="aantalV?" type="number" id="vanille" onblur="getValT()">
+  <input placeholder="aantalC?" type="number" id="choco" onblur="getValT()">
+  <p id="aantalShowerV">aantal of V</p>
+  <p id="aantalShowerC">aantal of C</p>
+  <p id="aantalShowerT">aantal of T</p>
+
+
+  <script>
+  
+    function getValT() {
+      var valC = document.querySelector('#choco').value
+      var ShowerC = document.querySelector('#aantalShowerC')
+      ShowerC.innerHTML = valC
+
+      var valV = document.querySelector('#vanille').value
+      var ShowerV = document.querySelector('#aantalShowerV')
+      ShowerV.innerHTML = valV
+      
+      valT = (Number(valV) + Number(valC))
+
+      var ShowerT = document.querySelector('#aantalShowerT')
+      ShowerT.innerHTML = valT
+
+
+    }
+  </script>
+
+</body>
+
+</html>

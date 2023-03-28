@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<body>
+		<input
+			placeholder="aantalV?"
+			type="number"
+			id="vanilla"
+			onchange="getValTot()" />
+		<input
+			placeholder="aantalC?"
+			type="number"
+			id="chocolate"
+			onchange="getValTot()" />
+		<input
+			placeholder="aantalS?"
+			type="number"
+			id="strawberry"
+			onchange="getValTot()" />
+
+		<p id="aantalShowerV">aantal of V</p>
+		<p id="aantalShowerC">aantal of C</p>
+		<p id="aantalShowerS">aantal of S</p>
+		<p id="aantalShowerT">aantal of T</p>
+		<!--<p>Vanille</p>-->
+
+		<script>
+			function getValVan() {
+				let valV = document.querySelector("#vanilla").value;
+				let ShowerV = document.querySelector("#aantalShowerV");
+				ShowerV.innerHTML = valV;
+				return Number(valV);
+			}
+
+			function getValCho() {
+				let valC = document.querySelector("#chocolate").value;
+				let ShowerC = document.querySelector("#aantalShowerC");
+				ShowerC.innerHTML = valC;
+				return Number(valC);
+			}
+
+			function getValStr() {
+				let valS = document.querySelector("#strawberry").value;
+				let ShowerS = document.querySelector("#aantalShowerS");
+				ShowerS.innerHTML = valS;
+				return Number(valS);
+			}
+
+			function getValTot() {
+				let valT = getValVan() + getValCho() + getValStr();
+				let ShowerT = document.querySelector("#aantalShowerT");
+
+				ShowerT.innerHTML = valT;
+				if ((valT) > 5) { alert("Please enter less than 5");}
+			}
+
+			alert("Hello");
+		</script>
+	</body>
+</html>

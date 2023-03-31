@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Add Object to JSON Array</title>
+</head>
+
+<body>
+
+  <h1>Add Object to JSON Array</h1>
+
+  <p>Enter the name and age of the new person:</p>
+
+  <label for="name-input">Name:</label>
+  <input type="text" id="name-input">
+
+  <label for="age-input">Age:</label>
+  <input type="number" id="age-input">
+
+  <button onclick="addObject()">Add Person</button>
+
+  <pre id="json-array"></pre>
+
+  <script>
+    // Define the initial JSON array
+    let jsonArray = [{
+        "name": "John",
+        "age": 30
+      },
+      {
+        "name": "Jane",
+        "age": 25
+      },
+      {
+        "name": "Bob",
+        "age": 40
+      }
+    ];
+
+    // Get the input fields and button
+    let nameInput = document.getElementById("name-input");
+    let ageInput = document.getElementById("age-input");
+    let addButton = document.querySelector("button");
+
+    // Get the pre element where the JSON array will be displayed
+    let jsonArrayElement = document.getElementById("json-array");
+
+    // Function to add a new object to the JSON array
+    function addObject() {
+      // Get the values of the input fields
+      let name = nameInput.value;
+      let age = parseInt(ageInput.value);
+
+      // Create a new object with the input values
+      let newObject = {
+        "name": name,
+        "age": age
+      };
+
+      // Add the new object to the JSON array
+      jsonArray.push(newObject);
+
+      // Convert the JSON array to a string and display it in the pre element
+      jsonArrayElement.textContent = JSON.stringify(jsonArray, null, 2);
+
+      // Clear the input fields
+      nameInput.value = "";
+      ageInput.value = "";
+    }
+
+    // Display the initial JSON array in the pre element
+    jsonArrayElement.textContent = JSON.stringify(jsonArray, null, 2);
+  </script>
+
+</body>
+
+</html>

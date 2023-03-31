@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>JSON Array CRUD</title>
+</head>
+<body>
+
+  <h1>JSON Array CRUD</h1>
+
+  <h2>Add Object</h2>
+
+  <p>Enter the name and age of the new person:</p>
+
+  <label for="name-input">Name:</label>
+  <input type="text" id="name-input">
+
+  <label for="age-input">Age:</label>
+  <input type="number" id="age-input">
+
+  <button onclick="addObject()">Add Person</button>
+
+  <h2>Delete Object</h2>
+
+  <p>Enter the index of the person to delete:</p>
+
+  <label for="delete-input">Index:</label>
+  <input type="number" id="delete-input">
+
+  <button onclick="deleteObject()">Delete Person</button>
+
+  <h2>Update Object</h2>
+
+  <p>Enter the index, name, and age of the person to update:</p>
+
+  <label for="update-index-input">Index:</label>
+  <input type="number" id="update-index-input">
+
+  <label for="update-name-input">Name:</label>
+  <input type="text" id="update-name-input">
+
+  <label for="update-age-input">Age:</label>
+  <input type="number" id="update-age-input">
+
+  <button onclick="updateObject()">Update Person</button>
+
+  <h2>JSON Array</h2>
+
+  <pre id="json-array"></pre>
+
+  <script>
+    // Define the initial JSON array
+    let jsonArray = [
+      { "name": "John", "age": 30 },
+      { "name": "Jane", "age": 25 },
+      { "name": "Bob", "age": 40 }
+    ];
+
+    // Get the input fields and buttons
+    let nameInput = document.getElementById("name-input");
+    let ageInput = document.getElementById("age-input");
+    let addButton = document.querySelector("button:nth-of-type(1)");
+
+    let deleteInput = document.getElementById("delete-input");
+    let deleteButton = document.querySelector("button:nth-of-type(2)");
+
+    let updateIndexInput = document.getElementById("update-index-input");
+    let updateNameInput = document.getElementById("update-name-input");
+    let updateAgeInput = document.getElementById("update-age-input");
+    let updateButton = document.querySelector("button:nth-of-type(3)");
+
+    // Get the pre element where the JSON array will be displayed
+    let jsonArrayElement = document.getElementById("json-array");
+
+    // Function to add a new object to the JSON array
+    function addObject() {
+      // Get the values of the input fields
+      let name = nameInput.value;
+      let age = parseInt(ageInput.value);
+
+      // Create a new object with the input values
+      let newObject = { "name": name, "age": age };
+
+      // Add the new object to the JSON array
+      jsonArray.push(newObject);
+
+      // Convert the JSON array to a string and display it in the pre element
+      jsonArrayElement.textContent = JSON.stringify(jsonArray, null, 2);
+
+      // Clear the input fields
+      nameInput.value = "";
+      ageInput.value = "";
+    }
+
+    // Function to delete an object from the JSON array
+    function deleteObject() {
+      // Get the index of the object to delete
+      let index = parseInt(deleteInput.value);
+
+      // Remove the object at the specified index from the

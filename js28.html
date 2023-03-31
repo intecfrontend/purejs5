@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>JSON Array CRUD</title>
+</head>
+<body>
+
+  <h1>JSON Array CRUD</h1>
+
+  <h2>Add Object</h2>
+
+  <p>Enter the name and age of the new person:</p>
+
+  <label for="name-input">Name:</label>
+  <input type="text" id="name-input">
+
+  <label for="age-input">Age:</label>
+  <input type="number" id="age-input">
+
+  <button onclick="addObject()">Add Person</button>
+
+  <h2>JSON Array</h2>
+
+  <pre id="json-array"></pre>
+
+  <script>
+    // Define the initial JSON array
+    let jsonArray = [
+      { "name": "John", "age": 30 },
+      { "name": "Jane", "age": 25 },
+      { "name": "Bob", "age": 40 }
+    ];
+
+    // Get the input fields and button
+    let nameInput = document.getElementById("name-input");
+    let ageInput = document.getElementById("age-input");
+    let addButton = document.querySelector("button");
+
+    // Get the pre element where the JSON array will be displayed
+    let jsonArrayElement = document.getElementById("json-array");
+
+    // Display the JSON array in the pre element on load
+    jsonArrayElement.textContent = JSON.stringify(jsonArray, null, 2);
+
+    // Add an onclick event listener to the button to add a new object to the JSON array
+    addButton.onclick = function() {
+      jsonArray.push({ "name": nameInput.value, "age": parseInt(ageInput.value) });
+      jsonArrayElement.textContent = JSON.stringify(jsonArray, null, 2);
+      nameInput.value = "";
+      ageInput.value = "";
+      addDeleteButtons();
+    };
+
+    // Function to add delete buttons for each object in the JSON array
+    function addDeleteButtons() {
+      // Remove all existing delete buttons
+      let deleteButtons = document.querySelectorAll(".delete-button");
+      for (let i = 0; i < deleteButtons.length; i++) {
+        deleteButtons[i].remove();
+      }
+
+      // Add a delete button for each object in the JSON array
+      for (let i = 0; i < jsonArray.length; i++) {
+        let deleteButton = document.createElement("button");
+        deleteButton.classList.add("delete-button");
+        deleteButton.textContent = "Delete";
+        deleteButton.onclick = function() {
+          jsonArray.splice(i, 1);
+          jsonArrayElement.textContent = JSON.stringify(jsonArray, null, 2);
+          addDeleteButtons();
+        };
+        let objectElement = document.createElement("div");
+        objectElement.textContent = `${jsonArray[i].name} (${jsonArray[i].age})`;
+        objectElement.appendChild(deleteButton);
+        jsonArrayElement.appendChild(objectElement);
+      }
+    }
+
+    // Call the addDeleteButtons function on load to add delete buttons for the initial JSON array
+    addDeleteButtons();
+  </script>
+
+</body>
+</html>

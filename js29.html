@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>JSON Array CRUD</title>
+</head>
+<body>
+
+  <h1>JSON Array CRUD</h1>
+
+  <h2>Add Object</h2>
+
+  <p>Enter the name and age of the new person:</p>
+
+  <label for="name-input">Name:</label>
+  <input type="text" id="name-input">
+
+  <label for="age-input">Age:</label>
+  <input type="number" id="age-input">
+
+  <button onclick="addObject()">Add Person</button>
+
+  <h2>JSON Array</h2>
+
+  <pre id="json-array"></pre>
+
+  <script>
+let jsonArray = [
+  { "name": "John", "age": 30 },
+  { "name": "Jane", "age": 25 },
+  { "name": "Bob", "age": 40 }
+];
+
+let nameInput = document.getElementById("name-input");
+let ageInput = document.getElementById("age-input");
+let addButton = document.querySelector("button");
+
+let jsonArrayElement = document.getElementById("json-array");
+
+jsonArrayElement.textContent = JSON.stringify(jsonArray, null, 2);
+
+addButton.onclick = function() {
+  let name = nameInput.value.trim();
+  let age = ageInput.value.trim();
+  let isValidName = /^[a-zA-Z]{2,}$/.test(name);
+  let isValidAge = /^\d+$/.test(age);
+
+  if (!isValidName) {
+    alert("Name must be at least 2 letters and consist only of letters");
+    nameInput.value = "";
+    nameInput.focus();
+    return;
+  }
+
+  if (!isValidAge) {
+    alert("Age must be a number");
+    ageInput.value = "";
+    ageInput.focus();
+    return;
+  }
+
+  jsonArray.push({ "name": capitalize(name), "age": parseInt(age) });
+  jsonArrayElement.textContent = JSON.stringify(jsonArray, null, 2);
+  nameInput.value = "";
+  ageInput.value = "";
+  addButtons();
+};
+
+function addButtons() {
+  let objectElements = document.querySelectorAll(".object");
+  for (let i = 0; i < objectElements.length; i++) {
+    let updateButton = objectElements[i].querySelector(".update-button");
+    let deleteButton = objectElements[i].querySelector(".delete-button");
+    updateButton.remove();
+    deleteButton.remove();
+  }
+
+  for (let i = 0; i < jsonArray.length; i++) {
+    let objectElement = document.createElement("div");
+    objectElement.classList.add("object");
+    objectElement.dataset.index = i;
+
+    let nameElement = document.createElement("span");
+    nameElement.textContent = capitalize(jsonArray[i].name);
+
+    let ageElement = document.createElement("span");
+    ageElement.textContent = jsonArray[i].age;
+
+    let updateButton = document.createElement("button");
+    updateButton.classList.add("update-button");
+    updateButton.textContent = "Update";
+    updateButton.onclick = function() {
+      let index = parseInt(objectElement.dataset.index);
+      let newName = prompt("Enter new name:", jsonArray[index].name);
+      let newAge = prompt("Enter new age:", jsonArray[index].age);
+
+      if (newName === null || newAge === null) {
+        return;
+      }
+
+      newName = newName.trim();
+      newAge = newAge.trim();
+      let isValidName = /^[a-zA-Z]{2,}$/.test(newName);
+      let isValidAge = /^\d+$/.test(newAge);
+
+      if (!isValidName) {
+        alert("Name must be at least 2 letters and consist only of letters");
+        return;
+      }
+
+      if (!isValidAge) {
+        alert("Age must be a number");
+        return;
+      }
+
+      jsonArray[index].name = capitalize(newName);
+      jsonArray[index].age = parseInt(newAge);
+      jsonArrayElement.textContent = JSON.stringify(jsonArray, null, 2);
+      addButtons();
+    };
+
+    let deleteButton = document.createElement("button");
+deleteButton.classList.add("delete-button");
+deleteButton.innerText = "Delete";
+deleteButton.onclick = function () {
+  jsonArray.splice(index, 1);
+  renderTable();
+};
+
+updateButton.classList.add("update-button");
+updateButton.innerText = "Update";
+updateButton.onclick = function () {
+  let updatedName = prompt("Enter updated name:");
+  let updatedAge = prompt("Enter updated age:");
+  if (
+    updatedName &&
+    updatedName.trim().length >= 2 &&
+    /^[a-zA-Z]+$/.test(updatedName.trim()) &&
+    updatedAge &&
+    /^\d+$/.test(updatedAge.trim())
+  ) {
+    jsonArray[index].name = updatedName.trim().charAt(0).toUpperCase() + updatedName.trim().slice(1);
+    jsonArray[index].age = parseInt(updatedAge.trim());
+    renderTable();
+  } else {
+    alert("Invalid input. Name must be at least 2 letters long and only contain letters. Age must be a number.");
+  }
+};
+
+tdActions.appendChild(deleteButton);
+tdActions.appendChild(updateButton);
+
+  </script>
+
+</body>
+</html>

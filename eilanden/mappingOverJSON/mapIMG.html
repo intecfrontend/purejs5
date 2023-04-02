@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>My Images</title>
+  <style>
+    img {
+      width: 8%
+    }
+  </style>
+</head>
+
+<body>
+  <div id="image-container"></div>
+
+  <script>
+    // define an array of objects
+    const images = [{
+        title: "Sunset",
+        url: "fel.jpg"
+      },
+      {
+        title: "Mountain",
+        url: "hen.jpg"
+      },
+      {
+        title: "Beach",
+        url: "zet.jpg"
+      }
+    ];
+
+    // map over the array and create a div for each image
+    const imageDivs = images.map((image) => {
+      return `
+          <div>
+            <h2>${image.title}</h2>
+            <img src="${image.url}" alt="${image.title}" />
+          </div>
+        `;
+    });
+
+    // add the image divs to the container
+    const imageContainer = document.getElementById("image-container");
+    imageContainer.innerHTML = imageDivs.join("");
+    console.log(imageContainer);
+  </script>
+</body>
+
+</html>

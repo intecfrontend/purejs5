@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JSON Array Mapping Example</title>
+</head>
+<body>
+  <ul id="myList">
+  </ul>
+
+  <script>
+    // Define a JSON array
+    const myArray = [
+      { id: 1, name: "John" },
+      { id: 2, name: "Jane" },
+      { id: 3, name: "Bob" }
+    ];
+
+    // Get a reference to the list element in the HTML
+    const myList = document.getElementById("myList");
+
+    // Map over the JSON array and create an HTML list item for each object
+    myArray.map(obj => {
+      const li = document.createElement("li");
+      li.textContent = `ID: ${obj.id}, Name: ${obj.name}`;
+      myList.appendChild(li);
+    });
+  </script>
+</body>
+</html>

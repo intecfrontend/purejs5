@@ -5,7 +5,7 @@
 //Hoisting ...
 setTimeout(function () {
   console.log("This message will be printed after 0 milliseconds.");
-}, 100);
+}, 1000);
 
 
 walk();

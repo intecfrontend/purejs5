@@ -1,7 +1,7 @@
 function sum(a, b) {
   return a + b;
 }
-console.log(sum(3, 4, 6))
+console.log("sum" + sum(3, 4, 6))
 // returns 7
 
 function sumA(a, b) {
@@ -10,12 +10,13 @@ function sumA(a, b) {
   // Changed 'arguments' to 'arguments' object to allow the function to receive any number of arguments
   for (let value of arguments)
     total += value;
-  console.log(arguments);
+  console.log("sumA" + arguments); // not working as expected
   // Return the total sum of all arguments, not just a + b
   return total;
 }
 
 
+console.log(sumA(3, 4, 6))
 console.log(sumA(3, 4, 6))
 // returns 7
 
@@ -25,7 +26,7 @@ function sumR(...args) {
   return args.reduce((a, b) => a + b);
 }
 console.log(sumR(1, 2, 3, 4, 5, 10));
-// returns 7
+// returns 25
 
 // This code defines a function called sumR that uses the reduce method to sum up any number of arguments that are passed to it using the spread operator ...args.
 

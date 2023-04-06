@@ -1,0 +1,57 @@
+ <!DOCTYPE html>
+ <html lang="en">
+
+ <head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+ </head>
+
+ <body>
+   <h2>Hello</h2>
+   <h5>there</h5>
+   <input id="ip1" type="text" placeholder="ip1 " write here" />
+   <input id="ip2" type="text" placeholder="ip2" />
+
+   <!--// no storage
+<script>
+  const input = document.querySelector("input"),
+    h2 = document.querySelector("h2");
+
+  input.addEventListener("keyup", display);
+
+  function display() {
+    h2.innerHTML = input.value
+  }
+</script> -->
+
+
+
+   <!-- // localstorage -->
+   <script>
+     const ip1 = document.querySelector("#ip1"),
+       ip2 = document.querySelector("#ip2"),
+       h2 = document.querySelector("h2"), //shorter: I like this
+       h5 = document.querySelector("h5");
+     //weird but needed
+     h2.innerHTML = localStorage.getItem('value')
+     h5.innerHTML = localStorage.getItem('value5')
+     // localstorage.clear();
+     // localstorage.removeItem('keyName');
+     //info: keyname == value
+     // lookup: F12 application
+     ip1.addEventListener("keyup", display);
+     ip2.addEventListener("keyup", display);
+
+     function display() {
+       localStorage.setItem('value', ip1.value);
+       localStorage.setItem('value5', ip2.value);
+       h2.innerHTML = localStorage.getItem('value')
+       h5.innerHTML = localStorage.getItem('value5')
+
+     }
+   </script>
+ </body>
+
+ </html>

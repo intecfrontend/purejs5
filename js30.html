@@ -1,0 +1,48 @@
+ <!DOCTYPE html>
+ <html lang="en">
+
+ <head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+ </head>
+
+ <body>
+   <h2>Hello</h2>
+   <input type="text placeholder= " write here" />
+
+   // no storage
+<script>
+  const input = document.querySelector("input"),
+    h2 = document.querySelector("h2");
+
+  input.addEventListener("keyup", display);
+
+  function display() {
+    h2.innerHTML = input.value
+  }
+</script>
+
+
+
+   <!-- // localstorage -->
+   <!-- <script>
+     const input = document.querySelector("input"),
+       h2 = document.querySelector("h2");
+     //weird but needed
+     h2.innerHTML = localStorage.getItem('value')
+     // localstorage.clear();
+     // localstorage.removeItem('keyName');
+//info:keyname == value
+     input.addEventListener("keyup", display);
+
+     function display() {
+       localStorage.setItem('value', input.value);
+       h2.innerHTML = localStorage.getItem('value')
+
+     }
+   </script> -->
+ </body>
+
+ </html>

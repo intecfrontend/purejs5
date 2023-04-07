@@ -9,10 +9,11 @@
  </head>
 
  <body>
-   <h2>Hello</h2>
-   <input type="text placeholder= " write here" />
+   <h6>Hello</h6>
+   <h1>Hello</h1>
+   <input type="text" placeholder=" write here" />
 
-   // no storage
+   <!-- // no storage
 <script>
   const input = document.querySelector("input"),
     h2 = document.querySelector("h2");
@@ -22,27 +23,27 @@
   function display() {
     h2.innerHTML = input.value
   }
-</script>
+</script> -->
 
 
 
    <!-- // localstorage -->
-   <!-- <script>
+   <script>
      const input = document.querySelector("input"),
-       h2 = document.querySelector("h2");
+       h1 = document.querySelector("h1");
      //weird but needed
-     h2.innerHTML = localStorage.getItem('value')
+     h1.innerHTML = localStorage.getItem('value')
      // localstorage.clear();
      // localstorage.removeItem('keyName');
-//info:keyname == value
+     //info:keyname == value
      input.addEventListener("keyup", display);
 
      function display() {
        localStorage.setItem('value', input.value);
-       h2.innerHTML = localStorage.getItem('value')
+       h1.innerHTML = localStorage.getItem('value')
 
      }
-   </script> -->
+   </script>
  </body>
 
  </html>
